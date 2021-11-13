@@ -1,0 +1,33 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+{% include 'includes/_header.html' %}
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3">
+                {% include 'includes/_side-menu.html' %}
+            </div>
+            <div class="column is-9">
+                <div class="content is-medium">
+                    <h3 class="title is-3">Latest Posts ¯\_(ツ)_/¯</h3>
+                    {% for post in posts %}
+                    <div class="box">
+                        <a href="{% url 'posts:post-detail' post.id %}">
+                            <h3 class="title is-3">{{post.title}}</h3>
+                        </a>
+                        <article class="message is-primary">
+                            <div class="message-body">
+                                {{post.content|truncatechars:200|safe}}
+                                <a href="{% url 'posts:post-detail' post.id %}">Read more</a>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

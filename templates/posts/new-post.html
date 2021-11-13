@@ -1,0 +1,33 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+{% block title %}
+New Post
+{% endblock title %}
+{% block content %}
+<div class="main-wrapper">
+<section class="blog-list px-3 py-5 p-md-5">
+<div class="container">
+<h4 class="text-xs-center mb-5">Submit new post</h4>
+<div class="card">
+  <div class="card-body">
+    <form action="" method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{form.media}}
+        <div class="form-group">
+            {{form.title}}
+        </div>
+       {{form.content}}
+       <div class="form-group">
+        <label for="post_thumbnail">Post Thumbnail</label><br>
+        <input type="file" name="post_thumbnail">
+       </div>
+        <br>
+        <div class="form-group">
+            <button class="btn btn-primary" id="submit">Submit new post</button>
+        </div>
+    </form>
+  </div>
+</div>
+</section>
+</div>
+{% endblock %}

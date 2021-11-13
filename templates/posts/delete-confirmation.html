@@ -1,0 +1,32 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+{% block title %}
+Delete Post
+{% endblock title %}
+{% block content %}
+<div class="main-wrapper">
+<section class="blog-list px-3 py-5 p-md-5">
+<div class="container">
+<div class="row">
+	<div class="col-md-6">
+        <div class="card">
+		<div class="card-body">
+			<p>Are you sure you want to delete "{{obj}}"?</p>
+
+			<form action="{% url 'delete-post' obj.id  %}" method="POST">
+				
+				{% csrf_token %}
+				<a class="btn btn-warning" href="{% url 'post-detail' obj.id %}">Cancel</a>
+
+                <button class="btn btn-danger" type="submit">Delete</button>
+				
+			</form>
+        </div>
+    </div>
+	</div>
+</div>
+</div>
+</section>
+</div>
+
+{% endblock %}

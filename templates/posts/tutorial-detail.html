@@ -1,0 +1,100 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+{% block title %}
+Tutorial
+{% endblock title %}
+{% block content %}
+    <div class="main-wrapper">
+	    
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">{{post_obj.title}}</h2>
+				    <div class="meta mb-3"><span class="date">Published {{post_obj.created_on|timesince}} ago</span><span class="time">{{post_obj.get_readtime}} read</span><span class="comment"><a href="#">4 comments</a></span> {% if request.user.is_authenticated and request.user.is_superuser %}<span class="comment"><a href="{% url 'edit-post' post_obj.id %}">Edit</a></span><span class="comment"><a href="{% url 'delete-post' post_obj.id %}">Delete</a></span>{% endif %}</div>
+			    </header>
+			    
+			    <div class="blog-post-body">
+				    <figure class="blog-banner">
+				        <img class="img-fluid" src="{{post_obj.post_thumbnail.url}}" alt="image">
+				       
+				    </figure>
+				    <p>{{post_obj.content|safe}}</p>
+			    </div>
+				    
+			    <nav class="blog-nav nav nav-justified my-5">
+				  <a class="nav-link-prev nav-item nav-link rounded-left" href="#">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded-right" href="#">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				</nav>
+				<!-- COMMENTS START -->
+				<h2> Comments ({{comments.count}}) </h2>
+				<div class="my-2">
+					{% if user.is_authenticated %}
+					<form action="/blog/postComment" method="post">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="exampleInputEmail1">Post Comment </label>
+							<input type="text" class="form-control" name="comment" placeholder="Enter comment here">
+						</div>
+						<input type="hidden" name="postSno" value="{{post.sno}}">
+						<input type="hidden" name="parentSno" value="">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+					{% else %}
+					Please login to post a comment
+					{% endif %}
+				</div>
+				{% for comment in comments %}
+				<div class="row my-3">
+					<div class="col-md-1  ">
+						<img class="rounded mx-auto d-block w-100 border border-dark p-2" src="/static/img/user.png" alt="user">
+					</div>
+					<div class="col-md-11 ">
+					<b> {{comment.user.username}} </b> <span class="badge badge-secondary ">{{comment.timestamp}}</span>
+						<div class="reply mx-0">
+						
+							<button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
+								Reply
+							</button>
+							<div class="collapse" id="replyBox{{comment.sno}}">
+								<div class="card card-body my-2">
+									<form action="/blog/postComment" method="post">
+										{% csrf_token %}
+										<div class="form-group">
+											<label for="comment">Post a reply </label>
+											<input type="text" class="form-control" name="comment" placeholder="Enter comment here">
+											<input type="hidden" name="parentSno" value="{{comment.sno}}">
+										</div>
+										<input type="hidden" name="postSno" value="{{post.sno}}">
+										<button type="submit" class="btn btn-primary">Submit</button>
+									</form>
+								</div>
+							</div>
+				
+							<div class="replies bg-danger my-2 ">
+							{% for reply in replyDict %}
+							{{reply}}
+							<br> 
+							{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+				<div class="blog-comments-section">
+				</div><!--//blog-comments-section-->
+				
+		    </div><!--//container-->
+	    </article>
+	    
+		{% include 'includes/footer.html' %}
+    
+    </div><!--//main-wrapper-->
+{% endblock %}
+    <!-- Page Specific JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{% static 'js/blog.js' %}"></script>
+    
+

@@ -1,0 +1,24 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+{% block title %}Post Detail{% endblock title %}
+{% block content %}
+
+{% include 'includes/_header.html' %}
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3">
+                {% include 'includes/_side-menu.html' %}
+            </div>
+            <div class="column is-9">
+                <div class="content is-medium">
+                    <h2 class="title is-2">{{obj.title}}</h2>
+                    <div class="box">
+                        {{obj.content|safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% load static %}
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="columns">
+            <div class="column is-12">
+                <div class="container content">
+                    <a href="{% url 'home:index' %}">
+                        <figure class="image is-128x128">
+                            <img src="{% static 'home/images/blog-logo.png' %}">
+                        </figure>
+                    </a>
+                    <h1 class="title">Code With Simon</h1>
+                    <h3 class="subtitle">
+                        Collection of code snippets & tutorials for your projects.
+                    </h3>
+                    {% if request.user.is_authenticated and request.user.is_superuser %}
+                    <a href="#" class="button is-primary is-medium">
+                        <span class="icon">
+                            <i class="fas fa-pen"></i>
+                        </span>
+                        <span>New Post</span>
+                    </a>
+                    {% else %}
+                    <a href="https://portfolio.codewithsimon.com/" target="_blank" rel="noopenner noreferrer"
+                        class="button is-primary is-medium">
+                        <span class="icon">
+                            <i class="fas fa-address-card"></i>
+                        </span>
+                        <span>About Us</span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
