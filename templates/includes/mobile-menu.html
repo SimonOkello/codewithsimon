@@ -1,0 +1,36 @@
+{% load static %}
+<div class="mobile-menu-overlay" id="mobile-menu-overlay">
+    <div class="mobile-menu-overlay__inner">
+        <div class="mobile-menu-overlay__header">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-8">
+                        <!-- logo -->
+                        <div class="logo">
+                            <a href="{% url 'home:index' %}">
+                                <img src="{% static 'images/logo/logo.png' %}" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-4">
+                        <!-- mobile menu content -->
+                        <div class="mobile-menu-content text-end">
+                            <span class="mobile-navigation-close-icon" id="mobile-menu-close-trigger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu-overlay__body">
+            <nav class="offcanvas-navigation">
+                <ul>
+                    <li>
+                        <a href="{% url 'home:index' %}">Home</a>
+                    </li>
+                    <li><a href="#"><span>About</span></a></li>
+                    <li><a href="#"><span>Contact </span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
