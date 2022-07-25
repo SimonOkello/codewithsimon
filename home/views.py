@@ -1,13 +1,26 @@
 from django.shortcuts import get_object_or_404, render
 from posts.models import Post, Category
+from django.conf import settings
+import requests
+import json
+from django.contrib import messages
 
 # Create your views here.
 
 
 def index(request):
-    categories = Category.objects.all()
-    posts = Post.objects.select_related('category').all()
-    context = {'categories': categories, 'posts': posts}
+    context = {}
+    category_url = f'{settings.CODEWITHSIMON_BASE_URL}/categories/'
+    try:
+        res = requests.get(category_url)
+        if res.status_code == 200:
+            try:
+                response = json.loads(res.text)
+                context = {'categories': response['categories']}
+            except KeyError as error:
+                pass
+    except requests.exceptions.RequestException as error:
+        messages.error(request, str(error))
     return render(request, 'home/index.html', context)
 
 

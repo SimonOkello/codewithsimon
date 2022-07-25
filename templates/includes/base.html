@@ -1,50 +1,155 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <title>CodeWithSimon|{% block title %}{% endblock title %}</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <!-- Bulma Version 0.9.0-->
-    <link rel='stylesheet' href='https://unpkg.com/bulma@0.9.3/css/bulma.min.css'>
-    <link rel='stylesheet'
-        href='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/css/OverlayScrollbars.min.css'>
-    <link rel='stylesheet' href='https://kingsora.github.io/OverlayScrollbars/etc/os-theme-thin-dark.css'>
-    <link rel='stylesheet' href="{% static 'home/css/prism.css' %}">
-    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
-    <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Code With Simon |{% block title%}{% endblock title %}</title>
+    <meta name="description" content="Bunzo is one of the most popular blog template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="#" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="blog" />
+    <meta property="og:title" content="Code With Simon" />
+    <meta property="og:url" content="https://codewithsimon.com" />
+    <meta property="og:site_name" content="codewithsimon" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+
+    <!-- CSS
+        ============================================ -->
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css">  -->
+
+    <!-- Gordita Fonts CSS -->
+    <link rel="stylesheet" href="{% static 'fonts/gordita-fonts.css' %}" />
+
+
+    <link rel="stylesheet" href="{% static 'css/vendor/vendor.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/plugins.min.css' %}">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
 
-<body>
-    {% block content %}
 
-    {% endblock content %}
-    <!-- Footer -->
-    {% include 'includes/_footer.html' %}
-    <!-- End footer -->
-    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/js/OverlayScrollbars.min.js'></script>
+<body class="theme-color-two">
 
-    <script>
-        window.addEventListener('resize', () => {
-            const divs = document.querySelectorAll(".menu-list");
-            if (window.innerWidth < 768) {
-                divs.forEach(div => div.classList.add("tags"));
-            }
-            else {
-                divs.forEach(div => div.classList.remove("tags"));
-            }
-        });
+    <!--========  header area =========-->
+    {% include 'includes/header.html' %}
+    <!--======== End of header area  =========-->
 
-        document.addEventListener("DOMContentLoaded", function () {
-            //The first argument are the elements to which the plugin shall be initialized
-            //The second argument has to be at least a empty object or a object with your desired options
-            OverlayScrollbars(document.querySelectorAll("body"), {});
-        });
+    <div id="main-wrapper">
+        {% block content %}
+        {% endblock content %}
+    </div>
 
-    </script>
+
+
+
+    <!--======  footer area =======-->
+    {% include 'includes/footer.html' %}
+    <!--=====  End of footer area ========-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--====================  scroll top ====================-->
+    <a href="#" class="scroll-top" id="scroll-top">
+        <i class="arrow-top icofont-swoosh-up"></i>
+        <i class="arrow-bottom icofont-swoosh-up"></i>
+    </a>
+    <!--====================  End of scroll top  ====================-->
+
+    <!--====================  mobile menu overlay ====================-->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+        <div class="mobile-menu-overlay__inner">
+            <div class="mobile-menu-overlay__header">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 col-8">
+                            <!-- logo -->
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="{% static 'images/logo/logo.png' %}" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-4">
+                            <!-- mobile menu content -->
+                            <div class="mobile-menu-content text-end">
+                                <span class="mobile-navigation-close-icon" id="mobile-menu-close-trigger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu-overlay__body">
+                <nav class="offcanvas-navigation">
+                    <ul>
+                        <li class="has-children">
+                            <a href="index.html">Home</a>
+                            <ul class="sub-menu">
+                                <li><a href="index-2.html"><span>Home Two</span></a></li>
+                                <li><a href="index-3.html"><span>Home Three</span></a></li>
+                                <li><a href="index-4.html"><span>Home Four</span></a></li>
+                                <li><a href="index-5.html"><span>Home Five</span></a></li>
+                                <li><a href="index-6.html"><span>Home Six</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="about-us.html"><span>About</span></a></li>
+                        <li class="has-children">
+                            <a href="#">Category</a>
+                            <ul class="sub-menu">
+                                <li><a href="category.html"><span>Category List</span></a> </li>
+                                <li><a href="category-grid.html"><span>Category Grid</span></a> </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="blog-details.html"><span>Blog Details</span></a> </li>
+                                <li><a href="blog-details-two.html"><span>Blog Details Two</span></a> </li>
+                                <li><a href="error-404.html"><span>Error 404</span></a> </li>
+                                <li><a href="faq.html"><span>FAQ's</span></a> </li>
+                                <li><a href="author-post.html"><span>Author post</span></a> </li>
+                                <li><a href="register.html"><span>Register</span></a> </li>
+                                <li><a href="write-post.html"><span>Write Post</span></a> </li>
+                            </ul>
+                        </li>
+                        <li><a href="contact-us.html"><span>Contact </span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!--====================  End of mobile menu overlay  ====================-->
+
+    <script src="{% static 'js/vendor/vendor.min.js' %}"></script>
+    <script src="{% static 'js/plugins/plugins.min.js' %}"></script>
+
+
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+
 </body>
+
 </html>

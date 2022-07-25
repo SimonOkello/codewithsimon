@@ -155,3 +155,5 @@ CKEDITOR_CONFIGS = {
         'width': 'auto',
     },
 }
+
+CODEWITHSIMON_BASE_URL = config('CODEWITHSIMON_BASE_URL')
