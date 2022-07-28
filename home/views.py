@@ -10,13 +10,18 @@ from django.contrib import messages
 
 def index(request):
     context = {}
-    category_url = f'{settings.CODEWITHSIMON_BASE_URL}/categories/'
+    category_url = f'{settings.CODEWITHSIMON_BASE_URL}/dashboard/'
     try:
         res = requests.get(category_url)
         if res.status_code == 200:
             try:
                 response = json.loads(res.text)
-                context = {'categories': response['categories']}
+                context = {
+                    'categories': response['categories'],
+                    'trending_today': response['trending_today'],
+                    'recent_posts': response['recent_posts'],
+                    'beginner_posts': response['beginner_posts'],
+                }
             except KeyError as error:
                 pass
     except requests.exceptions.RequestException as error:

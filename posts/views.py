@@ -1,5 +1,9 @@
 from .forms import CreatePostForm
 from django.shortcuts import redirect, render, get_object_or_404
+import requests
+import json
+from django.conf import settings
+from django.contrib import messages
 
 # Create your views here.
 from. models import Post, Category
@@ -7,6 +11,18 @@ from. models import Post, Category
 
 def index(request):
     context = {}
+    posts_url = f'{settings.CODEWITHSIMON_BASE_URL}/posts/'
+    try:
+        res = requests.get(posts_url)
+        if res.status_code == 200:
+            try:
+                response = json.loads(res.text)
+                print('POSTS:', response)
+                context = {'posts': response['posts']}
+            except KeyError as error:
+                pass
+    except requests.exceptions.RequestException as error:
+        messages.error(request, str(error))
     return render(request, 'posts/index.html', context)
 
 
@@ -18,12 +34,54 @@ def postDetail(request, post_id):
 
 
 def createPost(request):
-    form = CreatePostForm()
+    context = {}
     if request.method == 'POST':
-        form = CreatePostForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
+        FirstName = request.POST.get('FirstName')
+        MiddleName = request.POST.get('MiddleName')
+        LastName = request.POST.get('LastName')
+        CountryCode = request.POST.get('CountryCode')
+        MobileNumber = request.POST.get('MobileNumber')
+        DocumentType = request.POST.get('DocumentType')
+        DocumentNumber = request.POST.get('DocumentNumber')
+        Email = request.POST.get('Email')
+
+        # access_token = get_access_token()
+        # headers = {'Authorization': 'Bearer %s' % access_token}
+        headers = {'Content-Type': 'application/json'}
+
+        payload = {
+            'FirstName': FirstName,
+            'MiddleName': MiddleName,
+            'LastName': LastName,
+            'CountryCode': CountryCode,
+            'MobileNumber': MobileNumber,
+            'DocumentType': DocumentType,
+            'DocumentNumber': DocumentNumber,
+            'email': Email,
+        }
+
+        endpoint = f'{settings.WAAS_BASE_URL}/posts/'
+        try:
+            res = requests.post(endpoint, json=payload, headers=headers)
+            if res.status_code == 200:
+                try:
+                    response = json.loads(res.text)
+                    if 'RequestId' in response:
+                        request.session['RegistrationRequestId'] = response['RequestId']
+                        messages.success(request, response['message'])
+                        return redirect('confirm-beneficiary-view')
+                    else:
+                        messages.error(request, response['message'])
+                except KeyError as error:
+                    messages.error(request, str(error))
+        except requests.exceptions.RequestException as error:
+            messages.error(request, str(error))
+    # form = CreatePostForm()
+    # if request.method == 'POST':
+    #     form = CreatePostForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('index')
     return render(request, 'posts/new-post.html', {'form': form})
 
 

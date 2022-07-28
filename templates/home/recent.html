@@ -7,21 +7,18 @@
         <!-- Single Most Populer Item Start -->
         <div class="single-most-populer-item" data-aos="fade-up">
             <a href="blog-details.html" class="most-populer-thum">
-                <img src="{% static 'images/recent-article/01-recent-article.jpg" alt="" />
+                <img src="{{post.thumbnail.url}}" alt="" />
             </a>
             <div class="most-populer-content">
                 <div class="most-populer-post-author">
-                    By <a href="#">Andrew Hoffman</a>
+                    By <a href="#">{{post.author.first_name}} {{post.author.last_name}}</a>
                 </div>
-                <h3 class="title"><a href="blog-details.html">All of these amazing features
-                        come at an affordable price!</a>
+                <h3 class="title"><a href="blog-details.html">{{post.title}}</a>
                 </h3>
-                <p class="dec mt-2">Lorem Ipsum is simply dummy text themes print
-                    industry orem psum has been them industry spa
-                    also the loep into type setting.</p>
+                <p class="dec mt-2">{{post.intro}}</p>
                 <div class="most-populer-post-meta">
                     <span class="post-date">
-                    <a href="#">03 April, 2021</a>
+                    <a href="#">{{post.date_created}}</a>
                 </span>
                     <span>10 min read</span>
                 </div>
