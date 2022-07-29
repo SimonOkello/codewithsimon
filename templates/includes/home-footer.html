@@ -1,0 +1,90 @@
+{% load static %}
+<footer class="footer-area footer-two">
+  <div class="footer-top-area">
+      <div class="container-fluid container-custom-xl">
+          <div class="row">
+              <div class="col-lg-3 col-md-6 col-sm-6 order-lg-1 order-1">
+                  <div class="footer-widget">
+                      <div class="footer-logo">
+                          <a href="{% url 'home:index' %}">
+                              <img src="{% static 'images/logo/logo-2.png'%}" alt="">
+                          </a>
+                      </div>
+                      <p>Follow us on our social media platforms.
+                      </p>
+                      <ul class="footer-socail-share">
+                          <li><a href="#"><i class="icofont-facebook"></i></a></li>
+                          <li><a href="#"><i class="icofont-skype"></i></a></li>
+                          <li><a href="#"><i class="icofont-twitter"></i></a></li>
+                          <li><a href="#"><i class="icofont-linkedin"></i></a></li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="col-lg-6  order-lg-2 order-3">
+                  <div class="footer-menu-widget">
+                      <div class="single-footer-menu">
+                          <div class="footer-widget-title">
+                              <h4 class="title">Company</h4>
+                          </div>
+                          <ul class="footer-widget-menu-list">
+                              <li><a href="#!">Privacy Policy</a></li>
+                              <li><a href="#!">Discussion</a></li>
+                              <li><a href="#!">Terms & Conditions</a></li>
+                              <li><a href="#!">About Us</a></li>
+                              <li><a href="#!">Contact Us</a></li>
+                          </ul>
+                      </div>
+                      <div class="single-footer-menu">
+                          <div class="footer-widget-title">
+                              <h4 class="title">Explore More</h4>
+                          </div>
+                          <ul class="footer-widget-menu-list">
+                              <li><a href="#!">Resources</a></li>
+                          </ul>
+                      </div>
+                      <div class="single-footer-menu">
+                          <div class="footer-widget-title">
+                              <h4 class="title">Category</h4>
+                          </div>
+                          <ul class="footer-widget-menu-list">
+                            {% for category in categories %}
+                              <li><a href="#!">{{category.name}}</a></li>
+                              {% endfor %}
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6 order-lg-3 order-2">
+                  <div class="footer-widget footer-subscribe-area">
+                      <div class="footer-widget-title">
+                          <h4 class="title">Subscribe</h4>
+                      </div>
+                      <div class="footer-subscribe-wrap">
+                          <div class="single-input">
+                              <input type="text" placeholder="Your Name">
+                          </div>
+                          <div class="single-input">
+                              <input type="email" placeholder="Email Address">
+                          </div>
+                          <div class="button-box">
+                              <button class="btn-primary btn-bg-2 btn-large" type="submit">Subscribe Now</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="footer-bottom-area">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="copy-right-center">
+                      <p>&copy;2022. All rights reserved. Code With Simon</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>

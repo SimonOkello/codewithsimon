@@ -1,4 +1,3 @@
-from .forms import CreatePostForm
 from django.shortcuts import redirect, render, get_object_or_404
 import requests
 import json
@@ -6,7 +5,6 @@ from django.conf import settings
 from django.contrib import messages
 
 # Create your views here.
-from. models import Post, Category
 
 
 def index(request):
@@ -26,10 +24,23 @@ def index(request):
     return render(request, 'posts/index.html', context)
 
 
-def postDetail(request, post_id):
-    categories = Category.objects.all()
-    obj = get_object_or_404(Post, pk=post_id)
-    context = {'categories': categories, 'obj': obj}
+def post_detail(request, category_slug, post_slug):
+    context = {}
+    api_url = f'{settings.CODEWITHSIMON_BASE_URL}/posts/{category_slug}/{post_slug}/'
+    try:
+        res = requests.get(api_url)
+        if res.status_code == 200:
+            try:
+                response = json.loads(res.text)
+                context = {
+                    'post': response['post'],
+                    'trending_this_week': response['trending_this_week'],
+                }
+            except KeyError as error:
+                print('ERROR:', str(error))
+                messages.error(request, 'We could not find the blog details.')
+    except requests.exceptions.RequestException as error:
+        messages.error(request, str(error))
     return render(request, 'posts/post-detail.html', context)
 
 

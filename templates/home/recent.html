@@ -6,14 +6,14 @@
     <div class="col-lg-4 col-md-6">
         <!-- Single Most Populer Item Start -->
         <div class="single-most-populer-item" data-aos="fade-up">
-            <a href="blog-details.html" class="most-populer-thum">
+            <a href="{% url 'posts:post-detail' post.category.slug post.slug %}" class="most-populer-thum">
                 <img src="{{post.thumbnail.url}}" alt="" />
             </a>
             <div class="most-populer-content">
                 <div class="most-populer-post-author">
                     By <a href="#">{{post.author.first_name}} {{post.author.last_name}}</a>
                 </div>
-                <h3 class="title"><a href="blog-details.html">{{post.title}}</a>
+                <h3 class="title"><a href="{% url 'posts:post-detail' post.category.slug post.slug %}">{{post.title}}</a>
                 </h3>
                 <p class="dec mt-2">{{post.intro}}</p>
                 <div class="most-populer-post-meta">

@@ -1,15 +1,20 @@
 {% load static %}
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Code With Simon |{% block title%}{% endblock title %}</title>
-    <meta name="description" content="Bunzo is one of the most popular blog template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Bunzo is one of the most popular blog template"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
     <link rel="canonical" href="#" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="blog" />
@@ -18,78 +23,134 @@
     <meta property="og:site_name" content="codewithsimon" />
     <meta property="og:image" content="" />
     <!-- Favicon -->
-    <link rel="icon" href="{% static 'images/favicon.png' %}">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" />
 
-    <!-- CSS
-        ============================================ -->
-
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css">  -->
 
     <!-- Gordita Fonts CSS -->
     <link rel="stylesheet" href="{% static 'fonts/gordita-fonts.css' %}" />
 
 
-    <link rel="stylesheet" href="{% static 'css/vendor/vendor.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/plugins/plugins.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor/vendor.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/plugins/plugins.min.css' %}" />
 
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
 
-</head>
-
-
-<body class="theme-color-two">
-
+  <body>
     <!--========  header area =========-->
     {% include 'includes/header.html' %}
     <!--======== End of header area  =========-->
 
+    <!-- breadcrumb-area start -->
+    <!-- breadcrumb-area end -->
+
     <div id="main-wrapper">
-        {% block content %}
-        {% endblock content %}
+      {% block content %}
+      {% endblock content %}
     </div>
-
-
-
 
     <!--======  footer area =======-->
     {% include 'includes/footer.html' %}
     <!--=====  End of footer area ========-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!--====================  search overlay ====================-->
+    <div class="search-overlay" id="search-overlay">
+      <div class="search-overlay__header">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <!-- search content -->
+              <div class="search-content text-end">
+                <span
+                  class="mobile-navigation-close-icon"
+                  id="search-close-trigger"
+                ></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search-overlay__inner">
+        <div class="search-overlay__body">
+          <div class="search-overlay__form">
+            <form action="#">
+              <input type="text" placeholder="Search" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--====================  End of search overlay  ====================-->
     <!--====================  scroll top ====================-->
     <a href="#" class="scroll-top" id="scroll-top">
-        <i class="arrow-top icofont-swoosh-up"></i>
-        <i class="arrow-bottom icofont-swoosh-up"></i>
+      <i class="arrow-top icofont-swoosh-up"></i>
+      <i class="arrow-bottom icofont-swoosh-up"></i>
     </a>
     <!--====================  End of scroll top  ====================-->
 
     <!--====================  mobile menu overlay ====================-->
-    {% include 'includes/mobile-menu.html' %}
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+      <div class="mobile-menu-overlay__inner">
+        <div class="mobile-menu-overlay__header">
+          <div class="container-fluid">
+            <div class="row align-items-center">
+              <div class="col-md-6 col-8">
+                <!-- logo -->
+                <div class="logo">
+                  <a href="{% url 'home:index' %}">
+                    <img src="{% static 'images/logo/logo.png' %}"
+                    class="img-fluid" alt="" />
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-6 col-4">
+                <!-- mobile menu content -->
+                <div class="mobile-menu-content text-end">
+                  <span
+                    class="mobile-navigation-close-icon"
+                    id="mobile-menu-close-trigger"
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-menu-overlay__body">
+          <nav class="offcanvas-navigation">
+            <ul>
+              <li>
+                <a href="{% url 'home:index' %}">Home</a>
+              </li>
+              <li>
+                <a href="#"><span>About</span></a>
+              </li>
+              <!-- <li class="has-children">
+                <a href="#">Category</a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="category.html"><span>Category List</span></a>
+                  </li>
+                  <li>
+                    <a href="category-grid.html"><span>Category Grid</span></a>
+                  </li>
+                </ul>
+              </li> -->
+              <li>
+                <a href="#"><span>Contact </span></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
     <!--====================  End of mobile menu overlay  ====================-->
 
     <script src="{% static 'js/vendor/vendor.min.js' %}"></script>
     <script src="{% static 'js/plugins/plugins.min.js' %}"></script>
 
-
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
-
-
-</body>
+  </body>
 
 </html>
