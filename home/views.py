@@ -29,12 +29,19 @@ def index(request):
 
 
 def categoryView(request, slug):
+    context = {}
+    category_url = f'{settings.CODEWITHSIMON_BASE_URL}/categories/{slug}/'
     try:
-        categories = Category.objects.all()
-        obj = get_object_or_404(Category, slug=slug)
-        posts = Post.objects.select_related('category').filter(category=obj)
-    except Category.DoesNotExist:
-        pass
-
-    context = {'categories': categories, 'obj': obj, 'posts': posts}
-    return render(request, 'home/index.html', context)
+        res = requests.get(category_url)
+        if res.status_code == 200:
+            try:
+                response = json.loads(res.text)
+                context = {
+                    'category': response['category'],
+                    'posts': response['posts']
+                }
+            except KeyError as error:
+                pass
+    except requests.exceptions.RequestException as error:
+        messages.error(request, str(error))
+    return render(request, 'home/category.html', context)

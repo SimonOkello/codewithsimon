@@ -35,6 +35,7 @@ def post_detail(request, category_slug, post_slug):
                 context = {
                     'post': response['post'],
                     'trending_this_week': response['trending_this_week'],
+                    'related_posts': response['related_posts'],
                 }
             except KeyError as error:
                 print('ERROR:', str(error))
