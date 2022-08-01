@@ -7,11 +7,11 @@
         <!-- Single Most Populer Item Start -->
         <div class="single-most-populer-item" data-aos="fade-up">
             <a href="{% url 'posts:post-detail' post.category.slug post.slug %}" class="most-populer-thum">
-                <img src="{{post.thumbnail.url}}" alt="" />
+                <img src="{% static 'images/recent-article/01-recent-article.jpg' %}" alt="" />
             </a>
             <div class="most-populer-content">
                 <div class="most-populer-post-author">
-                    By <a href="#">{{post.author.first_name}} {{post.author.last_name}}</a>
+                    By <a href="#">{{post.author.user.first_name}} {{post.author.user.last_name}}</a>
                 </div>
                 <h3 class="title"><a href="{% url 'posts:post-detail' post.category.slug post.slug %}">{{post.title}}</a>
                 </h3>
@@ -20,14 +20,14 @@
                     <span class="post-date">
                     <a href="#">{{post.date_created}}</a>
                 </span>
-                    <span>10 min read</span>
+                    <span>{{item.post_readtime}} read</span>
                 </div>
             </div>
         </div><!-- Single Most Populer Item End -->
     </div>
     {% empty %}
     <div style="text-align:center;margin-top:50px;">
-        <p>Recent blog posts will appear here.</p>
+        <p>Latest blog posts will appear here.</p>
     </div>
     {% endfor %}
 
