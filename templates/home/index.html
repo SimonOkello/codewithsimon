@@ -34,7 +34,7 @@ Home
             <!-- Swiper -->
             <div class="swiper-container most-popular-slider-active">
                 <div class="swiper-wrapper">
-                    {% for item in trending_today %}
+                    {% for item in trending_this_week %}
                     <div class="swiper-slide">
                         <!-- Single Most Populer Item Start -->
                         <div class="single-most-populer-item" data-aos="fade-up">
@@ -123,7 +123,7 @@ Home
                 </div>
                 <div class="col-lg-5">
                     <div class="special-banner-blog-post">
-                        {% for item in beginner_posts %}
+                        {% for item in beginner_two_posts %}
                         <!-- Single-special-banner-post Start -->
                         <div class="single-special-banner-post" data-aos="fade-up">
                             <div class="most-populer-content">
@@ -146,33 +146,32 @@ Home
                     </div>
                 </div>
             </div>
-            <!-- <div class="row row--30">
-                {% for item in three_beginner %}
-                <div class="col-lg-4"> -->
+            <div class="row row--30">
+                {% for item in beginner_three_posts %}
+                <div class="col-lg-4">
                     <!-- Single Most Populer Item Start -->
-                    <!-- <div class="single-most-populer-item" data-aos="fade-up">
+                    <div class="single-most-populer-item" data-aos="fade-up">
                         <a href="#" class="most-populer-thum">
-                            <img src="{% static 'images/banners/02-special-banner.jpg' %}" alt="" />
+                            <img src="{{post.thumbnail}}" alt="" />
                         </a>
                         <div class="most-populer-content">
                             <div class="most-populer-post-author">
-                                By <a href="#">Andrew Hoffman</a>
+                                By <a href="#">{{item.author.user.first_name}} {{item.author.user.last_name}}</a>
                             </div>
-                            <h3 class="title"><a href="blog-details.html">All of these amazing features
-                                    come at an affordable price!</a>
+                            <h3 class="title"><a href="{% url 'posts:post-detail' item.category.slug item.slug %}">{{item.title}}</a>
                             </h3>
                             <div class="most-populer-post-meta">
                                 <span class="post-date">
-                                <a href="#">03 April, 2021</a>
+                                <a href="#">{{item.date_created}}</a>
                             </span>
-                                <span>10 min read</span>
+                                <span>{{item.post_readtime}} read</span>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <!-- Single Most Populer Item End -->
-                <!-- </div>
+                </div>
                 {% endfor %}
-            </div> -->
+            </div>
         </div>
     </div>
     <!-- Special For Beginner Area End -->

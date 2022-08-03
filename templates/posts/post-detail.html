@@ -12,7 +12,7 @@
             <div class="blog-details-post-wrap">
               <div class="blog-details-thum">
                 <img
-                  src="{% static 'images/blog/blog-details-1.jpg' %}"
+                  src="{{post.thumbnail}}"
                   alt=""
                 />
               </div>
@@ -111,7 +111,7 @@
                         <div class="single-related-post">
                           <div class="related-post-thum">
                             <img
-                              src="{% static 'images/blog/01.jpg' %}"
+                              src="{{post.thumbnail}}"
                               alt=""
                             />
                           </div>
@@ -253,7 +253,7 @@
                       <div class="latest-post-thum">
                         <a href="#">
                           <img
-                            src="{% static 'images/latest-post/01.jpg' %}"
+                            src="{{post.thumbnail}}"
                             alt=""
                           />
                         </a>
