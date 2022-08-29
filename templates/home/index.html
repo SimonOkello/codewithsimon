@@ -39,7 +39,7 @@ Home
                         <!-- Single Most Populer Item Start -->
                         <div class="single-most-populer-item" data-aos="fade-up">
                             <a href="{% url 'posts:post-detail' item.category.slug item.slug %}" class="most-populer-thum">
-                                <img src="{% static 'images/populer/01_populer.jpg' %}" alt="" />
+                                <img src="{{item.thumbnail}}" alt="" />
                             </a>
                             <div class="most-populer-content">
                                 <div class="most-populer-post-author">
