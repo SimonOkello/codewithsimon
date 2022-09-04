@@ -16,12 +16,15 @@ def index(request):
         if res.status_code == 200:
             try:
                 response = json.loads(res.text)
+                user = request.session.get(
+                    'user', {'email': 'simonokello.dev@gmail.com'})
                 context = {
                     'categories': response['categories'],
                     'trending_this_week': response['trending_this_week'],
                     'recent_posts': response['recent_posts'],
                     'beginner_two_posts': response['beginner_two_posts'],
                     'beginner_three_posts': response['beginner_three_posts'],
+                    'user': user
                 }
             except KeyError as error:
                 pass

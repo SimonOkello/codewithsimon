@@ -60,23 +60,11 @@
 								<h4 class="title">Company</h4>
 							</div>
 							<ul class="footer-widget-menu-list">
-								<li><a href="about-us.html">About Us</a></li>
-								<li><a href="contact-us.html">Contact Us</a></li>
-								<li><a href="#!">Local Print Ads</a></li>
-								<li><a href="faq.html">FAQ’s</a></li>
-								<li><a href="#!">Careers</a></li>
-							</ul>
-						</div>
-						<div class="single-footer-menu">
-							<div class="footer-widget-title">
-								<h4 class="title">Quick Links</h4>
-							</div>
-							<ul class="footer-widget-menu-list">
 								<li><a href="#!">Privacy Policy</a></li>
 								<li><a href="#!">Discussion</a></li>
 								<li><a href="#!">Terms & Conditions</a></li>
-								<li><a href="#!">Customer Support</a></li>
-								<li><a href="#!">Course FAQ’s</a></li>
+								<li><a href="#!">About Us</a></li>
+								<li><a href="#!">Contact Us</a></li>
 							</ul>
 						</div>
 						<div class="single-footer-menu">
@@ -84,11 +72,11 @@
 								<h4 class="title">Category</h4>
 							</div>
 							<ul class="footer-widget-menu-list">
-								<li><a href="#!">Lefestyle</a></li>
-								<li><a href="#!">Healthy</a></li>
-								<li><a href="#!">Restaurent</a></li>
-								<li><a href="#!">Travel Tips</a></li>
-								<li><a href="#!">Marketing</a></li>
+								{% for category in categories %}
+								<li>
+									<a href="{% url 'home:category' category.slug %}">{{category.name}}</a>
+								</li>
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
@@ -102,12 +90,7 @@
 				<div class="col-lg-12">
 					<div class="footer-bottom-inner">
 						<div class="copy-right-text">
-							<p>
-								© 2021 <a href="#">Bunzo</a>. Made with ❤️ by
-								<a target="_blank" rel="noopener" href="https://hasthemes.com/"
-									>HasThemes</a
-								>
-							</p>
+							<p>&copy;2022. All rights reserved. Code With Simon</p>
 						</div>
 						<div class="button-right-box">
 							<a href="#!" class="btn-primary btn-large"

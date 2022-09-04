@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from decouple import config, Csv
+from django.contrib.messages import constants as messages
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'posts.apps.PostsConfig',
+    'authentication.apps.AuthenticationConfig',
     'ckeditor',
     # 'highlightjs',
 ]
@@ -169,3 +171,12 @@ CKEDITOR_CONFIGS = {
 }
 
 CODEWITHSIMON_BASE_URL = config('CODEWITHSIMON_BASE_URL')
+
+# Message tags
+MESSAGE_TAGS = {
+    messages.DEBUG: 'info',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'error',
+}

@@ -1,0 +1,10 @@
+{% for message in messages %}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire(
+        `{{message.tags}}`,
+        `{{message}}`,
+        `{{message.tags}}`,
+    )
+</script>
+{% endfor %}
